@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niograph.com</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Apply a background color and font to the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Style the company logo */
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 50%;
+            background-color: #ffffff;
+            padding: 10px;
+        }
+        /* Style the navigation bar */
+        nav {
+            background-color: #007bff;
+            padding: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+
+        /* Style the input fields */
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Style the predict button */
+        .predict-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color:#007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .predict-button:hover {
+            background-color: #0056b3;
+        }
+        label{
+            font-weight: 600;
+            font-size: 0.4cm;
+        }
+  
+    /* Add styles for the table */
+    table {
+            width: 80%; /* Increase the table width to 80% */
+            margin: 0 auto; /* Center the table horizontally */
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    }
+
+        /* Style the table header */
+        th {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            
+        }
+
+        /* Style the table rows */
+        tr {
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        tr:hover {
+            background-color: #a8c6f3; /* Add a hover effect */
+        }
+
+        /* Style the table data cells */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #a7c7f7;
+            text-align: center;
+        }
+
+        /* Add alternating row colors */
+        tr:nth-child(even) {
+            background-color: #e1e9ff;
+        }
+        .button-container {
+            margin-left: 16.8cm;
+            display: flex;
+            gap: 360px;
+            margin-top: 40px; /* Add margin to create space for the images */
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #1900ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff0000;
+        }
+</style>
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+
+    <header>
+        <img style="height: 1.95cm;width: 1.95cm;border-radius: 60px;" src="../static/images/picture.jpg" alt="">
+        <div style="text-align: center;font-weight: 800;color: white;font-size: 1cm;">Niograph : CRM</div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('new') }}">Home</a></li>
+        </ul>
+    </nav>
+    <!--<div style="text-align: center;font-weight: 700;font-size: 0.8cm;margin-top: 1.5cm;margin-bottom: 1.5cm;width: 18cm;">Final Analysis from the Data</div>-->
+    <!-- Input Fields and Predict Button -->
+    <div style="font-weight: 800;text-align: center;margin-top: 1cm;margin-bottom: 1cm;font-size: 1cm;">
+        <p>Final Analysis from the Data</p>
+    </div>
+
+    {% if data[-1][-1] == "NO" %}
+        <p style="height: 1.5cm;margin: auto;width: 20cm;font-size: 0.8cm;text-align: center;margin-top: 1cm;margin-bottom: 1cm;">{{ user }} IS NOT A IDEAL CUSTOMER</p>
+    {% else %}
+        <p style="height: 1.5cm;margin: auto;width: 20cm;font-size: 0.8cm;text-align: center;margin-top: 1cm;margin-bottom: 1cm;">{{ user }} IS AN IDEAL CUSTOMER</p>
+        <p>{{ data[0][-1] }}</p>
+    {% endif %}
+    
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data_row in data %}
+                    <tr>
+                        <td>{{ data_row[0] }}</td>
+                        <td>{{ data_row[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<br>
+
+    
+        <div class="button-container">
+            <a class="button" href="{{ url_for('add') }}">Add to CRM</a>
+            <a class="button" href="{{ url_for('new') }}">Check New</a>
+        </div>
+    
+
+</body>
+</html>

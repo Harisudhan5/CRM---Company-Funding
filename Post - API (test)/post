@@ -1,0 +1,55 @@
+import requests
+# Replace with your actual credentials
+client_id = '1000.WO2TEXO944G3N8OMAWP9VOKWREPKMY'
+client_secret = 'a396850cdd12671c1ad483f833532f4f24b93f3d62'
+refresh_token = '1000.ddba8c96d8852caf9e905652b1ec7995.17c0b1d2a8b4625a9d130bca52ec3e9c'
+
+# Define the API endpoints
+token_url = 'https://accounts.zoho.com/oauth/v2/token'
+leads_url = 'https://www.zohoapis.com/crm/v2/Leads'
+
+# Define the lead data you want to insert
+lead_data = {
+    "data": [
+        {
+            "Last_Name": "Doe",
+            "First_Name": "John",
+            # Add other lead data here
+        }
+    ]
+}
+
+# Function to refresh access token
+def refresh_access_token():
+    payload = {
+        'grant_type': 'refresh_token',
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'refresh_token': refresh_token
+    }
+
+    response = requests.post(token_url, data=payload)
+    return response.json()
+
+# Function to insert leads
+def insert_lead(access_token):
+    headers = {
+        'Authorization': f'Zoho-oauthtoken {access_token}'
+    }
+    response = requests.post(leads_url, json=lead_data, headers=headers)
+    return response.json()
+
+# Main function
+def main():
+    try:
+        access_token_response = refresh_access_token()
+        if 'access_token' in access_token_response:
+            access_token = access_token_response['access_token']
+            lead_insert_response = insert_lead(access_token)
+            print('Lead Insertion Response:', lead_insert_response)
+        else:
+            print('Failed to obtain access token.')
+    except Exception as e:
+        print('An error occurred:', str(e))
+if __name__ == '__main__':
+    main()

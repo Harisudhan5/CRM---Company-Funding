@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niograph.com</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Apply a background color and font to the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Style the company logo */
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 50%;
+            background-color: #ffffff;
+            padding: 10px;
+        }
+        /* Style the navigation bar */
+        nav {
+            background-color: #1f28b1;
+            padding: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Style the container for input fields and button */
+        .container {
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            width: 50%;
+            height: 16.8cm;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Style the input fields */
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Style the predict button */
+        .predict-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .predict-button:hover {
+            background-color: #0056b3;
+        }
+        label{
+            font-weight: 600;
+            font-size: 0.4cm;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+
+    <header>
+        <img style="height: 4.2;width: 2.2cm;border-radius: 60px;" src="../images/zoho-logo.webp" alt="">
+        <div style="text-align: center;font-weight: 800;color: white;font-size: 1cm;">Find your Ideal Customer Profiles</div>
+    </header>
+
+    <!-- Navigation Bar -->
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Input Fields and Predict Button -->
+
+    <form class="container" action="/predict" method="POST" style="height: 19cm;">
+        <p style="text-align: center;font-weight: 680;font-size: 0.7cm;margin-bottom: 0.5cm;margin-top: 0.5cm;">Predict your customers</p>
+        <label for="">Company Name</label>
+        <input class="input" type="text" name="company" placeholder="Enter your Company Name">
+        <br>
+        <label for="">Industry Type</label>
+        <select class="input" name="industry">
+            <option value="16 Horizontal">Horizontal</option>
+            <option value="15 Healthcare">Healthcare</option>
+            <option value="17 Legal">Legal</option>
+            <option value="10 Energy-Gas-Oil-Utilities">Energy Gas Oil Utilities</option>
+            <option value="7 Construction">Construction</option>
+            <option value="11 Entertainment-Hospitality-Travel">Entertainment Hospitality Travel</option>
+            <option value="23 Retail">Retail</option>
+            <option value="22 Real-Estate&Rroperty-Mgt">Real Estate&Rroperty Mgt</option>
+            <option value="12 Financial Secrvices">Financial Secrvices</option>
+            <option value="9 Education">Education</option>
+            <option value="1 Automotive">Automotive</option>
+            <option value="24 Sports-and-Fitness">Sports and Fitness</option>
+            <option value="13 Food">Food</option>
+            <option value="18 Logistics-Supply-chain-Transportation">Logistics Supply chain Transportation</option>
+            <option value="4 CPG">CPG</option>
+            <option value="0 Agriculture">Agriculture</option>
+            <option value="20 Non-Profit">Non-Profit</option>
+            <option value="19 Manufacturing">Manufacturing</option>
+            <option value="5 Cannabis">Cannabis</option>
+            <option value="14 Government">Government</option>
+            <option value="2 Aviation">Aviation</option>
+            <option value="21 Real-state">Real Estate</option>
+            <option value="3 BioTech">BioTech</option>
+            <option value="8 Cryptocurrency">Cryptocurrency</option>
+            <option value="6 Clinical">Clinical</option>
+
+        </select>
+        <label for="">Category</label>
+        <select class="input" name="category">
+            <option value="7 Communication">Communication</option>
+            <option value="2 Analystics-and-BI">Analystics and BI</option>
+            <option value="4 Business-Mgt-and-ERP">Business Mgt and ERP</option>
+            <option value="8 Compilance">Compilance</option>
+            <option value="22 Practice-Management">Practice Management</option>
+            <option value="24 Sales-and-Marketing">Sales and Marketing</option>
+            <option value="16 Logistics-and-Supply-Chain">Logistics and Supply Chain</option>
+            <option value="14 IT-Mgt">IT Mgt</option>
+            <option value="1 Accounting-and-Finance">Accounting and Finance</option>
+            <option value="11 ECommerce">ECommerce</option>
+            <option value="10 Document-Management">Document Management</option>
+            <option value="13 HR-and-Recruiting">HR and Recruiting</option>
+            <option value="9 Cybersecurity">Cybersecurity</option>
+            <option value="6 Cloud-and-Software-Dev-Tools">Cloud and Software Dev Tools</option>
+            <option value="21 Point-of-Sale">Point of Sale</option>
+            <option value="18 On-Demand-Services">On - Demand Services</option>
+            <option value="17 Marketplace">Marketplace</option>
+            <option value="3 Automation">Automation</option>
+            <option value="5 Clinical">Clinical</option>
+            <option value="28 ELearning">ELearning</option>
+            <option value="0 AI-and-Machine-Learning">AI and Machine Learning</option>
+            <option value="26 Virtual-Reality">Virtual Reality</option>
+            <option value="25 Student-Mgt">Student Mgt</option>
+            <option value="23 Practice-Management">Practice Management</option>
+            <option value="15 Lifestyle">Lifestyle</option>
+            <option value="19 Payrments">Payrments</option>
+            <option value="12 Games-and-Entertainment">Games and Entertainment</option>
+            <option value="20 Personal-On-Demand-Service">Personal On - Demand Service</option>
+        </select>
+        <label for="">Software Type</label>
+        <select class="input" name="software">
+            <option value="0 B2B-SaaS">B2B SaaS</option>
+            <option value="1 B2G">B2G</option>
+            <option value="2 Consumer">Consumer</option>
+            <option value="3 Fintech">Fintech</option>
+            
+        </select>
+        <label for="">No.of.Employees</label>
+        <select class="input" name="employee">
+            <option value="4 11-50">11 - 50</option>
+            <option value="0 1-10">1 - 10</option>
+            <option value="3 1001-5000">1001 - 5000</option>
+            <option value="10 51-200">51 - 200</option>
+            <option value="9 501-1000">501 - 1000</option>
+            <option value="1 10001+">10001 +</option>
+            <option value="6 201-500">201 - 500</option>
+            <option value="8 5001-10000">5001 - 10000</option>
+            <option value="7 50-200">50 - 200</option>
+            <option value="5 111-50">111 - 50</option>
+            <option value="2 10001+">10001 + </option>
+
+        </select>
+        <label for="">Size of the Company</label>
+        <select class="input" name="size">
+            <option value="2 Small">Small</option>
+            <option value="3 Startup">Startup</option>
+            <option value="0 Large">Large</option>
+            <option value="1 Medium">Medium</option>
+        </select>
+        <label for="">Funding Type</label>
+        <select class="input" name="funding">
+            <option value="8 VC-Funded">VC - Funded</option>
+            <option value="7 Self-Funded">Self - Funded</option>
+            <option value="1 Angel-or-seed-Funding">Angel or seed Funding</option>
+            <option value="0 Acquired">Acquired</option>
+            <option value="6 Public">Public</option>
+            <option value="5 Private-Equity-Funding">Private Equity Funding</option>
+            <option value="3 Other">Other</option>
+        </select>
+        <button class="predict-button">Predict</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Validation logic here
+                const genderFields = document.querySelectorAll('select[name="gender"]');
+                let isValid = true;
+
+                genderFields.forEach(function (field) {
+                    if (field.value === '') {
+                        isValid = false;
+                        field.style.border = '1px solid red';
+                    } else {
+                        field.style.border = '1px solid #ccc';
+                    }
+                });
+
+                if (isValid) {
+                    // Submit the form if all fields are valid
+                    form.submit();
+                } else {
+                    // Display an error message or handle validation errors
+                    alert('Please fill in all required fields.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

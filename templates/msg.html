@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button-container {
+            margin-left: 16.8cm;
+            display: flex;
+            gap: 360px;
+            margin-top: 40px; /* Add margin to create space for the images */
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #1900ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff0000;
+        }
+        p{
+            text-align: center;
+            font-size: 1.5cm;
+            font-weight: 800;
+            color: #1900ff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Apply a background color and font to the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Style the company logo */
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 50%;
+            background-color: #ffffff;
+            padding: 10px;
+        }
+        /* Style the navigation bar */
+        nav {
+            background-color: #1f28b1;
+            padding: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img style="height: 4.2;width: 2.2cm;border-radius: 60px;" src="../images/zoho-logo.webp" alt="">
+        <div style="text-align: center;font-weight: 800;color: white;font-size: 1cm;">Zoho - CRM</div>
+    </header>
+
+    <!-- Navigation Bar -->
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    {% if msg == "1" %}
+    <p>Lead inserted successfully</p>
+    <div class="button-container">
+        <a class="button" href="https://www.zoho.com/en-in/crm/">Launch CRM</a>
+        <a class="button" href="{{ url_for('new') }}">Check New</a>
+    </div>
+    {% else %}
+    <p>An error occured while inserting the Leads</p>
+    <div class="button-container">
+        <a class="button" href="https://www.zoho.com/en-in/crm/">Launch CRM</a>
+        <a class="button" href="{{ url_for('new') }}">Check New</a>
+    </div>
+    {% endif %}
+
+</body>
+</html>
